@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-cleaned_data = pd.read_csv('vscode (streamlit)/cleaned_Illegal_Dumping_Incidents.csv')
+cleaned_data = pd.read_csv('cleaned_Illegal_Dumping_Incidents.csv')
 cleaned_data["Completed Incident Date"] = pd.to_datetime(cleaned_data["Completed Incident Date"], errors='coerce')
 
 st.sidebar.title("Filters")
