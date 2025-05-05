@@ -12,7 +12,13 @@ cleaned_data["Completed Incident Date"] = pd.to_datetime(cleaned_data["Completed
 
 min_date = cleaned_data["Completed Incident Date"].min().date()
 max_date = cleaned_data["Completed Incident Date"].max().date()
-date_range = st.sidebar.date_input("Date Range", [min_date, max_date])
+available_dates = sorted(cleaned_data["Completed Incident Date"].dropna().dt.date.unique())
+date_range = st.sidebar.select_slider(
+    "Date Range",
+    options=available_dates,
+    value=(available_dates[0], available_dates[-1])
+)
+
 
 cleaned_data["Overall Environmental Impact"] = pd.to_numeric(cleaned_data["Overall Environmental Impact"], errors='coerce')
 min_impact = int(cleaned_data["Overall Environmental Impact"].min())
